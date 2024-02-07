@@ -3,8 +3,10 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const webpackMode = process.env.NODE_ENV || "development";
+
 module.exports = {
-    mode: "development",
+    mode: webpackMode,
     entry: "./src/index.js",
     output: {
         path: path.resolve("./dist"),
@@ -13,7 +15,8 @@ module.exports = {
     devServer: {
         liveReload: true,
         historyApiFallback: true,
-        open: true
+        open: true,
+        port: 3000
     },
     module: {
         rules: [
@@ -25,8 +28,12 @@ module.exports = {
                 }
             },
             {
-                test: /\.s[ac]ss$/i,
-                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+                test: /\.(scss|sass)$/,
+                use: [
+                    webpackMode ? "style-loader" : MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    "sass-loader"
+                ]
             },
             {
                 test: /\.html$/,
@@ -38,7 +45,7 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(png|jpg|gif)$/i,
+                test: /\.(png|jpg|gif|svg)$/i,
                 use: {
                     loader: "file-loader",
                     options: {
@@ -46,25 +53,6 @@ module.exports = {
                         outputPath: "images/"
                     }
                 }
-            },
-            {
-                test: /\.svg$/i,
-                use: [
-                    {
-                        loader: "@svgr/webpack",
-                        options: {
-                            name: "[name].[ext]",
-                            outputPath: "images/"
-                        }
-                    },
-                    {
-                        loader: "file-loader",
-                        options: {
-                            name: "[name].[ext]",
-                            outputPath: "images/"
-                        }
-                    }
-                ]
             }
         ]
     },

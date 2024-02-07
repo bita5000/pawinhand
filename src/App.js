@@ -1,18 +1,12 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Main from "./pages/main/Main.jsx";
 
 const App = () => {
     return (
-        <>
-            <div>
-                App + Webpack + Babel
-                <h1>Main Component Start!</h1>
-                <h2>webpack watch test</h2>
-                <p>
-                    해당 세팅은 sass-loader, css-loader, file-loader 설치가
-                    되어있습니다.
-                </p>
-            </div>
-        </>
+        <Routes>
+            <Route path="/" element={<Main />} />
+        </Routes>
     );
 };
 
