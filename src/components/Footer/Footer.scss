@@ -38,3 +38,29 @@ footer {
         }
     }
 }
+
+@media only screen and (max-width: 1230px) {
+    footer {
+        .footer-wrap {
+            width: $tablet-width;
+            .contact {
+                margin-bottom: 40px;
+                div {
+                    @include body-bold;
+                }
+            }
+
+            .company-info {
+                @include body-regular;
+                margin-bottom: 16px;
+            }
+
+            .copyright {
+                @include body-regular;
+                span {
+                    @include body-bold;
+                }
+            }
+        }
+    }
+}

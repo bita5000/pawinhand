@@ -17,6 +17,10 @@ header {
     img {
         cursor: pointer;
     }
+
+    .hamburger {
+        display: none;
+    }
 }
 
 nav {
@@ -50,6 +54,24 @@ nav {
         img {
             margin-top: -1px;
             margin-right: 4px;
+        }
+    }
+}
+
+@media only screen and (max-width: 1230px) {
+    header {
+        .header-wrap {
+            width: $tablet-width;
+            justify-content: space-between;
+
+            nav {
+                display: none;
+            }
+
+            .hamburger {
+                cursor: pointer;
+                display: block;
+            }
         }
     }
 }

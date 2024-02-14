@@ -4,6 +4,7 @@ import "./Header.scss";
 // image
 import Logo from "../../images/logo.svg";
 import StoreIcon from "../../images/icon/store.svg";
+import HamburgerIcon from "../../images/icon/hamburger.svg";
 
 const Header = () => {
     return (
@@ -22,6 +23,11 @@ const Header = () => {
                         포인핸드 스토어
                     </div>
                 </nav>
+                <img
+                    className="hamburger"
+                    src={HamburgerIcon}
+                    alt="hamburger icon"
+                />
             </div>
         </header>
     );

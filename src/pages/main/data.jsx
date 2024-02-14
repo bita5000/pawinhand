@@ -146,7 +146,6 @@ const data = {
     sns: [
         { id: 0, img: Sns1 },
         { id: 1, img: Sns2 },
-        { id: 2, img: Sns3 },
         { id: 3, img: Sns4 },
         { id: 4, img: Sns5 }
     ]

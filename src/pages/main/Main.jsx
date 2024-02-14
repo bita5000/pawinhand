@@ -33,7 +33,6 @@ const Main = () => {
             setCurrentHistory(
                 (currentHistory) => (currentHistory + 1) % data.history.length
             );
-            // setImageVisible(false);
         }, 3500);
 
         return () => clearInterval(intervalHistory);
@@ -106,10 +105,10 @@ const Main = () => {
                             <div className="title">
                                 <img src={BellIcon} alt="bell icon" />
                                 <span>새로운 소식</span>
+                                <span>펀딩</span>
                             </div>
                             <div className="event-board-contents-wrap">
                                 <div className="event-board-contents">
-                                    <span>펀딩</span>
                                     <h3>품종 없이도 충분히 사랑스러운</h3>
                                     <h2>포인핸드 매거진 18호</h2>
                                     <div className="button">
@@ -309,7 +308,7 @@ const Main = () => {
                     <h2>
                         포인핸드 인스타그램에서
                         <br />
-                        입양 후기를 만나보세요
+                        다양한 소식을 확인하세요
                     </h2>
                 </div>
                 <span>@pawinhnad_official</span>
