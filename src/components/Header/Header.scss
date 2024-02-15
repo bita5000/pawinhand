@@ -27,6 +27,11 @@ nav {
     display: flex;
     width: 100%;
     position: relative;
+
+    .hamburger-logo {
+        display: none;
+    }
+
     ul {
         @include body-medium;
         position: absolute;
@@ -63,14 +68,40 @@ nav {
         .header-wrap {
             width: $tablet-width;
             justify-content: space-between;
-
-            nav {
-                display: none;
+            .invisible {
+                opacity: 0;
+            }
+            .visible {
+                width: $tablet-width;
+                transition: opacity 0.3s ease-in-out;
+                position: absolute;
+                height: 200vh;
+                background-color: $background-color;
+                ul {
+                    flex-direction: column;
+                    position: absolute;
+                    right: -290px;
+                    margin-top: 120px;
+                    li {
+                        margin-bottom: 8px;
+                    }
+                }
+                .nav-right {
+                    position: absolute;
+                    left: 0px;
+                    margin-top: 240px;
+                }
+                .hamburger-logo {
+                    display: block;
+                    width: 127px;
+                }
             }
 
             .hamburger {
                 cursor: pointer;
                 display: block;
+                z-index: 999;
+                transition: transform 0.3s ease-in-out;
             }
         }
     }

@@ -38,10 +38,6 @@ const Main = () => {
         return () => clearInterval(intervalHistory);
     }, []);
 
-    // useEffect(() => {
-    //     setImageVisible(false);
-    // }, currentHistory);
-
     const easeOutExpo = (t) => {
         return t === 1 ? 1 : 1 - Math.pow(10, -10 * t);
     };
