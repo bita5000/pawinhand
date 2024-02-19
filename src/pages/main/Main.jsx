@@ -23,10 +23,20 @@ const Main = () => {
     const [storeCurrentIndex, setStoreCurrentIndex] = useState(0);
     const [currentHistory, setCurrentHistory] = useState(0);
     const [imageVisible, setImageVisible] = useState(false);
+    const [storeWrapPosition, setStoreWrapPosition] = useState(0);
+    const [storeArr, setStoreArr] = useState([
+        data.store.length - 1,
+        0,
+        1,
+        2,
+        3,
+        4
+    ]);
 
     const TOTAL_RESCUE_COUNT = 68724;
     const TOTAL_DONATION_AMOUNT = 10962709;
 
+    // history slider
     useEffect(() => {
         setImageVisible(true);
         const intervalHistory = setInterval(() => {
@@ -38,6 +48,31 @@ const Main = () => {
         return () => clearInterval(intervalHistory);
     }, []);
 
+    const historyHandler = (index) => {
+        setCurrentHistory(index);
+    };
+
+    // 1. 페이지로딩완료시 6개의 배열을 미리 랜딩함
+    // 2. 화살표의 명령이 들어오면 배열을 일단 변경부터..
+
+    // store slider
+    const selectedStoreData = storeArr.map((index) => data.store[index]);
+
+    const handleArrowClick = (increment) => {
+        if (increment === +1) {
+            setStoreCurrentIndex(storeCurrentIndex + 1);
+        } else {
+            setStoreCurrentIndex(storeCurrentIndex - 1);
+        }
+
+        const newStoreArr = storeArr.map(
+            (index) =>
+                (index + increment + data.store.length) % data.store.length
+        );
+        setStoreArr(newStoreArr);
+    };
+
+    // counter
     const easeOutExpo = (t) => {
         return t === 1 ? 1 : 1 - Math.pow(10, -10 * t);
     };
@@ -61,25 +96,6 @@ const Main = () => {
         }, []);
 
         return count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    };
-
-    const historyHandler = (index) => {
-        setCurrentHistory(index);
-    };
-
-    const dataIndex = data.store.length;
-    const storeHandler = (direction) => {
-        if (direction === "left") {
-            if (storeCurrentIndex === 0) {
-                return;
-            } else {
-                setStoreCurrentIndex(storeCurrentIndex - 1);
-            }
-        } else if (direction === "right") {
-            if (storeCurrentIndex < dataIndex - 4) {
-                setStoreCurrentIndex(storeCurrentIndex + 1);
-            }
-        }
     };
 
     return (
@@ -230,29 +246,30 @@ const Main = () => {
                     <div className="store-title-object">
                         <img
                             src={Arrow2Left}
-                            onClick={() => {
-                                storeHandler("left");
-                            }}
+                            onClick={() => handleArrowClick(-1)}
                             alt="left icon"
                         />
                         <img
                             src={Arrow2Right}
-                            onClick={() => {
-                                storeHandler("right");
-                            }}
+                            onClick={() => handleArrowClick(+1)}
                             alt="right icon"
                         />
                     </div>
                 </div>
-                <div className="store-wrap">
-                    {data.store.map((item) => {
+                <div
+                    className="store-wrap"
+                    style={{
+                        transform: `translate(${-storeCurrentIndex * 304}px, 0)`
+                    }}
+                >
+                    {selectedStoreData.map((item) => {
                         return (
                             <div
                                 className="store-card"
                                 key={item.id}
                                 style={{
-                                    transform: ` translate(${
-                                        -storeCurrentIndex * 304
+                                    transform: `translate(${
+                                        storeCurrentIndex * 304
                                     }px, 0)`
                                 }}
                             >

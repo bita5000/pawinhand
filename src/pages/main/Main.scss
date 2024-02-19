@@ -197,15 +197,20 @@ $images-path: "../../images";
 
     .history-card-wrap {
         width: $desktop-width;
+        overflow: hidden;
         height: 440px;
         position: relative;
         .hide-display {
-            display: none;
+            position: absolute;
+            opacity: 0;
+            transform: translateY(-20px);
         }
         .history-card {
             width: 100%;
             height: 440px;
             opacity: 1;
+            transform: translateX(0);
+            transition: transform 0.5s ease;
 
             position: absolute;
             padding: 64px;
@@ -223,7 +228,7 @@ $images-path: "../../images";
                         background-color: $gray-500;
                     }
                     .hidden-dot {
-                        z-index: 888;
+                        z-index: 10;
                         width: 8px;
                         height: 8px;
                         border-radius: 50%;
@@ -253,15 +258,15 @@ $images-path: "../../images";
     margin: 0 auto;
     .store-wrap {
         display: flex;
+        margin-left: -304px;
+        transition: transform 0.5s ease-in-out;
         .store-card {
             width: 288px;
             margin-right: 16px;
             cursor: pointer;
-            transition: transform 0.5s ease-in-out;
             .img-wrap {
                 overflow: hidden;
                 border-radius: 8px;
-
                 img {
                     width: 288px;
                     height: 292px;

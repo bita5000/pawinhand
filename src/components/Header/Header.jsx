@@ -14,8 +14,6 @@ const Header = () => {
     const hamburgerHandler = () => {
         setIshamburger(!isHamburger);
     };
-    console.log(isHamburger);
-
     return (
         <header>
             <div className="header-wrap">
