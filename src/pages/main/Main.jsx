@@ -23,7 +23,6 @@ const Main = () => {
     const [storeCurrentIndex, setStoreCurrentIndex] = useState(0);
     const [currentHistory, setCurrentHistory] = useState(0);
     const [imageVisible, setImageVisible] = useState(false);
-    const [storeWrapPosition, setStoreWrapPosition] = useState(0);
     const [storeArr, setStoreArr] = useState([
         data.store.length - 1,
         0,
@@ -52,19 +51,18 @@ const Main = () => {
         setCurrentHistory(index);
     };
 
-    // 1. 페이지로딩완료시 6개의 배열을 미리 랜딩함
-    // 2. 화살표의 명령이 들어오면 배열을 일단 변경부터..
-
     // store slider
     const selectedStoreData = storeArr.map((index) => data.store[index]);
 
     const handleArrowClick = (increment) => {
+        // animation
         if (increment === +1) {
             setStoreCurrentIndex(storeCurrentIndex + 1);
         } else {
             setStoreCurrentIndex(storeCurrentIndex - 1);
         }
 
+        // arr cycle
         const newStoreArr = storeArr.map(
             (index) =>
                 (index + increment + data.store.length) % data.store.length
@@ -73,6 +71,8 @@ const Main = () => {
     };
 
     // counter
+
+    // 카운트 속도 점점 느려지게
     const easeOutExpo = (t) => {
         return t === 1 ? 1 : 1 - Math.pow(10, -10 * t);
     };
@@ -183,13 +183,7 @@ const Main = () => {
                         사진을 클릭하면 포인핸드 활동 페이지로 이동해요
                     </div>
                 </div>
-                <div
-                    className="history-card-wrap"
-                    style={{
-                        opacity: imageVisible ? 1 : 0.7,
-                        transition: "opacity 0.3s ease-in-out"
-                    }}
-                >
+                <div className="history-card-wrap">
                     {data.history.map((item) => {
                         return (
                             <div

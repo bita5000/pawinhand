@@ -1,6 +1,7 @@
 import React from "react";
 import "./Header.scss";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 
 // image
 import Logo from "../../images/logo.svg";
@@ -14,6 +15,7 @@ const Header = () => {
     const hamburgerHandler = () => {
         setIshamburger(!isHamburger);
     };
+
     return (
         <header>
             <div className="header-wrap">

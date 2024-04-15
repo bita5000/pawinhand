@@ -34,18 +34,30 @@ $images-path: "../../images";
     }
 }
 
+@keyframes slideUp {
+    0% {
+        transform: translateY(15px); /* 시작 위치 */
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0); /* 올라가는 위치 및 정도를 조절하세요 */
+        opacity: 1;
+    }
+}
+
 .intro {
     width: $desktop-width;
     height: 100vh;
     margin: 0 auto;
     position: relative;
+
     .intro-wrap {
         position: absolute;
         margin-top: 30px;
         top: 50%;
         transform: translate(0, -50%);
-
         .intro-main-board {
+            animation: slideUp 0.2s ease-in-out;
             height: 240px;
             margin-bottom: 16px;
             background-size: cover;
@@ -78,6 +90,8 @@ $images-path: "../../images";
                 margin-right: 16px;
                 background-color: $gray-400;
                 border-radius: 16px;
+
+                animation: slideUp 0.5s ease-in-out;
 
                 .title {
                     display: flex;
@@ -149,6 +163,8 @@ $images-path: "../../images";
                 border-radius: 16px;
                 background-color: $primary-color;
 
+                animation: slideUp 0.9s ease-in-out;
+
                 .title {
                     @include caption3-regular;
                     color: $gray-500;
@@ -203,7 +219,7 @@ $images-path: "../../images";
         .hide-display {
             position: absolute;
             opacity: 0;
-            transform: translateY(-20px);
+            transform: translateX(-10px);
         }
         .history-card {
             width: 100%;
